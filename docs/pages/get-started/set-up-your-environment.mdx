@@ -1,31 +1,8 @@
----
-title: Set up your environment
-description: Learn how to set up your development environment to start building with Expo.
-hideTOC: true
----
+import React from "react"; import { View, Text, ScrollView, TouchableOpacity } from "react-native"; import { Card } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { useNavigation } from "@react-navigation/native";
 
-import { DevelopmentEnvironmentInstructions } from '~/scenes/get-started/set-up-your-environment/DevelopmentEnvironmentInstructions';
-import { DevelopmentModeForm } from '~/scenes/get-started/set-up-your-environment/DevelopmentModeForm';
-import { PlatformAndDeviceForm } from '~/scenes/get-started/set-up-your-environment/PlatformAndDeviceForm';
+const exercises = [ { id: 1, name: "Squat", description: "Esercizio per gambe e glutei." }, { id: 2, name: "Panca Piana", description: "Esercizio per pettorali e tricipiti." }, { id: 3, name: "Stacchi da terra", description: "Esercizio completo per tutto il corpo." }, ];
 
-Let's set up a local development environment for running your project on Android and iOS.
+export default function PersonalTrainerApp() { const navigation = useNavigation();
 
-## Where would you like to develop?
+return ( <ScrollView className="p-4"> <Text className="text-xl font-bold mb-4">Programma di Allenamento</Text> {exercises.map((exercise) => ( <Card key={exercise.id} className="mb-4 p-4"> <Text className="text-lg font-semibold">{exercise.name}</Text> <Text className="text-gray-600">{exercise.description}</Text> <Button className="mt-2" onPress={() => navigation.navigate("Dettaglio", { exercise })}> Dettagli </Button> </Card> ))} <Button className="mt-4" onPress={() => navigation.navigate("SchedaAllenamento")}>Scheda di Allenamento</Button> <Button className="mt-4" onPress={() => navigation.navigate("MonitoraggioProgresso")}>Monitoraggio Progresso</Button> </ScrollView> ); }
 
-We recommend using a real device to develop, since you'll get to see exactly what your users will see.
-
-<PlatformAndDeviceForm />
-
-## How would you like to develop?
-
-Expo Go is a sandbox for trying out Expo quickly. A development build is a build of your own app that includes Expo's developer tools.
-
-<DevelopmentModeForm />
-
----
-
-<DevelopmentEnvironmentInstructions />
-
-## Next step
-
-You have a project and a development environment. Now it's time to start developing.
